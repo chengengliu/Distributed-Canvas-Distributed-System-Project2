@@ -20,8 +20,10 @@ public class DbTest {
            registry = LocateRegistry.getRegistry("localhost");
            test = (IRemoteDb) registry.lookup("DB");
            testAuthentication(test);
-           testSaveCanvas(test);
+//           testSaveCanvas(test);
            testRetrieveCanvas(test);
+
+           testOverrideDatabase(test);
 
        }catch (RemoteException e){
            e.printStackTrace();
@@ -73,5 +75,11 @@ public class DbTest {
         String manager = "world";
         String password = "world";
         test.loadAllWb(manager);
+    }
+
+    private static void testOverrideDatabase(IRemoteDb test) throws RemoteException{
+        String manager = "world";
+        String password = "world";
+        test.saveWb(manager,"Content");
     }
 }

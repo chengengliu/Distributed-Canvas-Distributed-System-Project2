@@ -78,11 +78,12 @@ public class DataServerFacade {
     }
 
 
-
+    // For testing purpose. wbContent should be a canvas object.
     String saveWb(String managerName, String wbContent){
         JSONObject message = new JSONObject();
+        message.put("header", wbContent);
         message.put("hello", 123);
-        return dataServer.saveCanvas(message, "world");
+        return dataServer.saveCanvas(message, managerName);
     }
 
 
