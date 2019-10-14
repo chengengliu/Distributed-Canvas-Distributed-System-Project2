@@ -1,5 +1,7 @@
 package wbServerApp;
 
+import wbServerData.WbServerDataStrategy;
+
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
@@ -7,82 +9,52 @@ public class RemoteWb extends UnicastRemoteObject implements IRemoteWb {
     protected RemoteWb() throws RemoteException {}
 
     @Override
-    public String register(String username, String password) throws RemoteException {
+    public String register(String username, String password) {
         return WbServerFacade.getInstance().register(username, password);
     }
 
     @Override
-    public String login(String username, String password) throws RemoteException {
+    public String login(String username, String password) {
         return WbServerFacade.getInstance().login(username, password);
     }
 
     @Override
-    public String createWb(String username) throws RemoteException {
-        return WbServerFacade.getInstance().createWb(username);
+    public String createWb(String wbName, String username) {
+        return WbServerFacade.getInstance().createWb(wbName, username);
     }
 
     @Override
-    public String joinWb(String username) throws RemoteException {
-        return WbServerFacade.getInstance().joinWb(username);
+    public String joinWb(String wbName, String username) {
+        return WbServerFacade.getInstance().joinWb(wbName, username);
     }
 
     @Override
-    public String closeWb(String wbID, String username) throws RemoteException {
-        /* NEED FIX */
-        return "CLOSE WB FUNCTION NOT FINISH ";
+    public void allowJoin(String username, boolean isAllow) {
+        WbServerFacade.getInstance().allowJoin(username, isAllow);
     }
 
     @Override
-    public String saveWbOnline(String wbID, String username) throws RemoteException {
-        /* NEED FIX */
-        return "ONLINE SAVE FUNCTION NOT FINISH " + username + " " + wbID;
+    public String getCreatedWb() {
+        return WbServerFacade.getInstance().getCreatedWb();
     }
 
     @Override
-    public String saveWbLocally(String wbID, String username, String format) throws RemoteException {
-        /* NEED FIX */
-        return "LOCAL SAVE FUNCTION NOT FINISH " + username + " " + wbID;
+    public void closeWb(String username) {
+        WbServerFacade.getInstance().closeWb(username);
     }
 
     @Override
-    public String getAllStoredFiles(String username) throws RemoteException {
-        /* NEED FIX */
-        return "GET ALL STORED FILES FUNCTION NOT FINISH " + username;
+    public void kickUser(String manager, String visitor) {
+        WbServerFacade.getInstance().kickUser(manager, visitor);
     }
 
     @Override
-    public String openWbOnline(String wbID, String username) throws RemoteException {
-        /* NEED FIX */
-        return "OPEN ONLINE SAVED WB FUNCTION NOT FINISH " + username + " " + wbID;
+    public void updateWb(String wbName, String username, String wb) {
+        WbServerFacade.getInstance().updateWb(wbName, username, wb);
     }
 
     @Override
-    public String openWbLocally(String username, String wbContent) throws RemoteException {
-        /* NEED FIX */
-        return "OPEN LOCAL SAVED WB FUNCTION NOT FINISH " + username;
-    }
-
-    @Override
-    public String render(String wbID, String username) throws RemoteException {
-        /* NEED FIX */
-        return "RENDER FUNCTION NOT FINISH " + username + " " + wbID;
-    }
-
-    @Override
-    public String draw(String wbID, String username, String content) throws RemoteException {
-        /* NEED FIX */
-        return "DRAW FUNCTION NOT FINISH " + username + " " + wbID;
-    }
-
-    @Override
-    public String erase(String wbID, String username, String content) throws RemoteException {
-        /* NEED FIX */
-        return "ERASE FUNCTION NOT FINISH " + username + " " + wbID;
-    }
-
-    @Override
-    public String sendMsg(String wbID, String username, String msg) throws RemoteException {
-        /* NEED FIX */
-        return "SEND MESSAGE FUNCTION NOT FINISH " + username + " " + wbID + " " + msg;
+    public void sendMsg(String wbName, String username, String msg) {
+        WbServerFacade.getInstance().sendMsg(wbName, username, msg);
     }
 }
