@@ -12,9 +12,9 @@ Current build support java 8 and below only. After building the three jar files,
 use the following command to remove the digital signature in mqtt-library:
 ```zip -dr [jar-name] 'META-INF/.SF' 'META-INF/.RSA' 'META-INF/*SF'```<br>
 Start the data server with the following command first: 
-```java -jar [data-server] -ip [your-ip] -p [port-you-want-to-listen]```
+```java -jar [data-server] -ip [your-ip] -p [port-you-want-to-listen]```<br>
 Then start the web server with:
-```java -jar [web-server] -ip [your-ip]```
+```java -jar [web-server] -ip [your-ip]```<br>
 Finally the client:
 ```java -jar [client]```
 <br>
